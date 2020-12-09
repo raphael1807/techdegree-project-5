@@ -1,0 +1,253 @@
+{
+  "results": [
+    {
+      "name": { "title": "Mr", "first": "Sören", "last": "Pfeffer" },
+      "location": {
+        "street": { "number": 3665, "name": "Rosenstraße" },
+        "city": "Westerstede",
+        "state": "Hessen",
+        "country": "Germany",
+        "postcode": 19772,
+        "coordinates": { "latitude": "-44.5806", "longitude": "-98.9073" },
+        "timezone": {
+          "offset": "+9:00",
+          "description": "Tokyo, Seoul, Osaka, Sapporo, Yakutsk"
+        }
+      },
+      "email": "soren.pfeffer@example.com",
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/men/14.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/men/14.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/14.jpg"
+      }
+    },
+    {
+      "name": { "title": "Miss", "first": "Norah", "last": "Legrand" },
+      "location": {
+        "street": { "number": 4977, "name": "Rue Louis-Garrand" },
+        "city": "Tourcoing",
+        "state": "Maine-et-Loire",
+        "country": "France",
+        "postcode": 92370,
+        "coordinates": { "latitude": "17.5665", "longitude": "42.3838" },
+        "timezone": {
+          "offset": "+7:00",
+          "description": "Bangkok, Hanoi, Jakarta"
+        }
+      },
+      "email": "norah.legrand@example.com",
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/women/90.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/women/90.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/90.jpg"
+      }
+    },
+    {
+      "name": { "title": "Mr", "first": "Fabio", "last": "Lefebvre" },
+      "location": {
+        "street": { "number": 1224, "name": "Esplanade du 9 Novembre 1989" },
+        "city": "Lille",
+        "state": "Pas-de-Calais",
+        "country": "France",
+        "postcode": 99133,
+        "coordinates": { "latitude": "-77.1268", "longitude": "-154.9952" },
+        "timezone": {
+          "offset": "-4:00",
+          "description": "Atlantic Time (Canada), Caracas, La Paz"
+        }
+      },
+      "email": "fabio.lefebvre@example.com",
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/men/59.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/men/59.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/59.jpg"
+      }
+    },
+    {
+      "name": { "title": "Ms", "first": "Ana", "last": "Caballero" },
+      "location": {
+        "street": { "number": 7466, "name": "Calle del Prado" },
+        "city": "Almería",
+        "state": "Melilla",
+        "country": "Spain",
+        "postcode": 24756,
+        "coordinates": { "latitude": "-73.4504", "longitude": "160.8409" },
+        "timezone": {
+          "offset": "-1:00",
+          "description": "Azores, Cape Verde Islands"
+        }
+      },
+      "email": "ana.caballero@example.com",
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/women/84.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/women/84.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/84.jpg"
+      }
+    },
+    {
+      "name": { "title": "Ms", "first": "Silje", "last": "Rasmussen" },
+      "location": {
+        "street": { "number": 3243, "name": "Bøgevænget" },
+        "city": "Roslev",
+        "state": "Sjælland",
+        "country": "Denmark",
+        "postcode": 70910,
+        "coordinates": { "latitude": "67.9235", "longitude": "-34.8341" },
+        "timezone": {
+          "offset": "+5:30",
+          "description": "Bombay, Calcutta, Madras, New Delhi"
+        }
+      },
+      "email": "silje.rasmussen@example.com",
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/women/23.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/women/23.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/23.jpg"
+      }
+    },
+    {
+      "name": { "title": "Mr", "first": "Ryder", "last": "Smith" },
+      "location": {
+        "street": { "number": 4164, "name": "Deans Avenue" },
+        "city": "Hamilton",
+        "state": "Waikato",
+        "country": "New Zealand",
+        "postcode": 52436,
+        "coordinates": { "latitude": "-25.8509", "longitude": "-56.7205" },
+        "timezone": {
+          "offset": "+2:00",
+          "description": "Kaliningrad, South Africa"
+        }
+      },
+      "email": "ryder.smith@example.com",
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/men/88.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/men/88.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/88.jpg"
+      }
+    },
+    {
+      "name": { "title": "Mrs", "first": "Jandira", "last": "Fernandes" },
+      "location": {
+        "street": { "number": 3940, "name": "Rua Castro Alves " },
+        "city": "Araruama",
+        "state": "Pernambuco",
+        "country": "Brazil",
+        "postcode": 66914,
+        "coordinates": { "latitude": "78.1869", "longitude": "-84.7822" },
+        "timezone": { "offset": "-9:00", "description": "Alaska" }
+      },
+      "email": "jandira.fernandes@example.com",
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/women/84.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/women/84.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/84.jpg"
+      }
+    },
+    {
+      "name": { "title": "Monsieur", "first": "Jonas", "last": "Guillot" },
+      "location": {
+        "street": { "number": 3812, "name": "Rue Dubois" },
+        "city": "Meierskappel",
+        "state": "Valais",
+        "country": "Switzerland",
+        "postcode": 7547,
+        "coordinates": { "latitude": "-56.0093", "longitude": "-78.6484" },
+        "timezone": { "offset": "+3:30", "description": "Tehran" }
+      },
+      "email": "jonas.guillot@example.com",
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/men/33.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/men/33.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/33.jpg"
+      }
+    },
+    {
+      "name": { "title": "Ms", "first": "Dolores", "last": "Fuentes" },
+      "location": {
+        "street": { "number": 6606, "name": "Calle de Ferraz" },
+        "city": "Toledo",
+        "state": "Asturias",
+        "country": "Spain",
+        "postcode": 43532,
+        "coordinates": { "latitude": "-79.7872", "longitude": "-57.9304" },
+        "timezone": { "offset": "-12:00", "description": "Eniwetok, Kwajalein" }
+      },
+      "email": "dolores.fuentes@example.com",
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/women/95.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/women/95.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/95.jpg"
+      }
+    },
+    {
+      "name": { "title": "Mr", "first": "Normano", "last": "Lima" },
+      "location": {
+        "street": { "number": 2146, "name": "Rua Maranhão " },
+        "city": "Taubaté",
+        "state": "Pernambuco",
+        "country": "Brazil",
+        "postcode": 24517,
+        "coordinates": { "latitude": "57.0468", "longitude": "-35.5966" },
+        "timezone": {
+          "offset": "-11:00",
+          "description": "Midway Island, Samoa"
+        }
+      },
+      "email": "normano.lima@example.com",
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/men/28.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/men/28.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/28.jpg"
+      }
+    },
+    {
+      "name": { "title": "Mr", "first": "Alfred", "last": "Watson" },
+      "location": {
+        "street": { "number": 2963, "name": "Camden Ave" },
+        "city": "Sydney",
+        "state": "Tasmania",
+        "country": "Australia",
+        "postcode": 5147,
+        "coordinates": { "latitude": "65.1609", "longitude": "-141.2777" },
+        "timezone": {
+          "offset": "0:00",
+          "description": "Western Europe Time, London, Lisbon, Casablanca"
+        }
+      },
+      "email": "alfred.watson@example.com",
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/men/41.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/men/41.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/41.jpg"
+      }
+    },
+    {
+      "name": { "title": "Ms", "first": "Sofija", "last": "Schanke" },
+      "location": {
+        "street": { "number": 150, "name": "Langerudveien" },
+        "city": "Viksjord",
+        "state": "Vestfold",
+        "country": "Norway",
+        "postcode": "5404",
+        "coordinates": { "latitude": "-51.5066", "longitude": "121.0053" },
+        "timezone": {
+          "offset": "+10:00",
+          "description": "Eastern Australia, Guam, Vladivostok"
+        }
+      },
+      "email": "sofija.schanke@example.com",
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/women/62.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/women/62.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/62.jpg"
+      }
+    }
+  ],
+  "info": {
+    "seed": "ca63f26098259ebe",
+    "results": 12,
+    "page": 1,
+    "version": "1.3"
+  }
+}
