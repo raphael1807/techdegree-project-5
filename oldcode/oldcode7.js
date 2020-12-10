@@ -1,7 +1,7 @@
 // ------------------------------------------
 // FETCH FUNCTIONS
 // ------------------------------------------
-// const users = [];
+const users = [];
 
 // Function to fetch the Data from a URL
 function fetchData(url) {
@@ -18,6 +18,14 @@ fetchData('https://randomuser.me/api/?results=12&inc=picture,dob,name,cell,email
     .then(data => {
         console.log(data);
         for (let i = 0; i < data.results.length; i++) {
+            users.push(data.results[i]);
+            generatedModal(data.results[i]);
+        }
+        generateCardsAddListener();
+    })
+    .then(data => {
+        console.log(data);
+        for (let i = 0; i < data.results.length; i++) {
             this.cell = formatTelephone(data.results[i].cell);
             console.log(data);
             this.dob.date = formatDate(data.results[i].dob.date);
@@ -27,7 +35,8 @@ fetchData('https://randomuser.me/api/?results=12&inc=picture,dob,name,cell,email
             generatedModal(data.results[i]);
         }
         generateCardsAddListener();
-    });
+    })
+
 
 // ------------------------------------------
 //  HELPER FUNCTIONS

@@ -1,7 +1,6 @@
 // ------------------------------------------
 // FETCH FUNCTIONS
 // ------------------------------------------
-const users = [];
 
 // Function to fetch the Data from a URL
 function fetchData(url) {
@@ -18,17 +17,20 @@ fetchData('https://randomuser.me/api/?results=12&inc=picture,dob,name,cell,email
     .then(data => {
         console.log(data);
         for (let i = 0; i < data.results.length; i++) {
+            data.results[i].cell = formatTelephone(data.results[i].cell);
+            data.results[i].dob.date = formatDate(data.results[i].dob.date);
             generateCard(data.results[i]);
-            users.push(data.results[i]);
-            console.log(users);
             generatedModal(data.results[i]);
         }
+        generateCardsAddListener();
     });
 
 // ------------------------------------------
 //  HELPER FUNCTIONS
 // ------------------------------------------
 
+// Taken from the exercice Fetch API
+// Check Promise status
 function checkStatus(response) {
     if (response.ok) {
         return Promise.resolve(response);
@@ -37,6 +39,22 @@ function checkStatus(response) {
     }
 }
 
+
+// Taken from the exercice Regular expressions in JavaScript, course: Reformatting a Telephone Number
+function formatTelephone(text) {
+    const regex = /^\D*(\d{3})\D*(\d{3})\D*(\d{4})\D*$/;
+    return text.replace(regex, '($1) $2-$3');
+}
+
+// Date formatter
+function formatDate(text) {
+    const textSliced = text.slice(0, 10);
+    const regex = /^(\d{4})\-(\d{1,2})\-(\d{1,2})$/;
+    return textSliced.replace(regex, '$2/$3/$1');
+}
+
+
+// Generate cards from datas
 function generateCard(data) {
     const galleryOfCards = document.getElementById('gallery');
     galleryOfCards.insertAdjacentHTML('beforeEnd', `<div class= "card">
@@ -50,13 +68,7 @@ function generateCard(data) {
         </div>
         </div>`);
 }
-
-// Taken from the exercice Regular expressions in JavaScript, course: Reformatting a Telephone Number
-function formatTelephone(text) {
-    const regex = /^\D*(\d{3})\D*(\d{3})\D*(\d{4})\D*$/;
-    return text.replace(regex, '($1) $2-$3');
-}
-
+// Generate modals function
 function generatedModal(data) {
     const galleryOfCards = document.getElementById('gallery');
     galleryOfCards.insertAdjacentHTML('afterEnd', `<div class="modal-container" style="display:none">
@@ -80,73 +92,37 @@ function generatedModal(data) {
 </div>`);
 }
 
-
 // ------------------------------------------
-//  Create a modal window
+//  EVENT LISTENER GENERATOR
 // ------------------------------------------
 
+// Generate cards event listener
+function generateCardsAddListener() {
+    const allCards = document.querySelectorAll(".card");
+    const allModalNames = document.querySelectorAll('.modal-name');
+    const allModals = document.querySelectorAll('div.modal-container');
 
-// Make sure there’s a way to close the modal window
-// Refer to the mockups and the comments in the index.html file for an example of what info should be displayed on the page and 
-// how it should be styled.
-// NOTE: The formatting of the Cell Number should be (XXX) XXX-XXXX and the formatting of the Birthday should be MM/DD/YYYY.
-
-// Modal markup:
-
-// You can use the commented out markup below as a template
-// for your modal, but you must use JS to create and append 
-// it to `body`.
-
-// IMPORTANT: Altering the arrangement of the markup and the 
-// attributes used may break the styles or functionality.
-
-// <div class="modal-container">
-//     <div class="modal">
-//         <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
-//         <div class="modal-info-container">
-//             <img class="modal-img" src="https://placehold.it/125x125" alt="profile picture">
-//             <h3 id="name" class="modal-name cap">name</h3>
-//             <p class="modal-text">email</p>
-//             <p class="modal-text cap">city</p>
-//             <hr>
-//             <p class="modal-text">(555) 555-5555</p>
-//             <p class="modal-text">123 Portland Ave., Portland, OR 97204</p>
-//             <p class="modal-text">Birthday: 10/21/2015</p>
-//         </div>
-//     </div>
-
-// ------------------------------------------
-//  EVENT LISTENERS
-// ------------------------------------------
-// Event listener if a card element is clicked
-
-// document.querySelectorAll('div.card')[0].textContent.includes('Roger');
-
-const cardsContainer = document.getElementById('gallery');
-const allCards = document.querySelectorAll('div.card');
-const allModals = document.querySelectorAll('div.modal-info-container');
-const allCardNames = document.querySelectorAll('.card-name');
-const allModalNames = document.querySelectorAll('.modal-name');
-
-cardsContainer.addEventListener('click', (e) => {
-    console.log(e.target);
-    if (e.target.className === "card") {
-        for (let i = 0; i < allModalNames.length; i++) {
-            if (e.target.textContent == allModalNames[i].textContent) {
-                allModalNames[i].style.display = "block";
+    for (let i = 0; i < allCards.length; i++) {
+        allCards[i].addEventListener("click", (e) => {
+            for (let i = 0; i < allModals.length; i++) {
+                if (e.currentTarget.children[1].children[0].textContent == allModalNames[i].textContent) {
+                    allModals[i].style.display = "block";
+                    generateModalAddListener();
+                }
             }
-        }
+        });
     }
-});
+}
 
-// Event listener if a card element is cliscked
-const modalContainer = document.querySelector(".modal-container");
-const closedButton = document.querySelector(".modal-close-btn");
-closedButton.addEventListener('click', (e) => {
-    console.log('called');
-    modalContainer.style.display = "none";
-});
-// console.log(closedButton);
+// Generate modals listener
+function generateModalAddListener() {
+    const allClosedModalButtons = document.querySelectorAll(".modal-close-btn");
+    for (let i = 0; i < allClosedModalButtons.length; i++) {
+        allClosedModalButtons[i].addEventListener("click", (e) => {
+            e.currentTarget.parentNode.parentNode.style.display = "none";
+        });
+    }
+}
 
 // ------------------------------------------
 //  SEARCH MARKUP-EXCEEDS EXPECTATION

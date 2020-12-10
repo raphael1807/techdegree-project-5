@@ -18,15 +18,14 @@ fetchData('https://randomuser.me/api/?results=12&inc=picture,dob,name,cell,email
     .then(data => {
         console.log(data);
         for (let i = 0; i < data.results.length; i++) {
-            this.cell = formatTelephone(data.results[i].cell);
-            console.log(data);
-            this.dob.date = formatDate(data.results[i].dob.date);
             generateCard(data.results[i]);
             // users.push(data.results[i]);
             // console.log(users);
             generatedModal(data.results[i]);
         }
-        generateCardsAddListener();
+        console.log(document.querySelectorAll('.card-name'));
+        // generateCardsAddListener();
+        generateModalAddListener();
     });
 
 // ------------------------------------------
@@ -55,64 +54,48 @@ function generateCard(data) {
         </div>`);
 }
 
-
 // Taken from the exercice Regular expressions in JavaScript, course: Reformatting a Telephone Number
 function formatTelephone(text) {
     const regex = /^\D*(\d{3})\D*(\d{3})\D*(\d{4})\D*$/;
     return text.replace(regex, '($1) $2-$3');
-    // this.cell = formattedTelephone;
 }
+
 
 function formatDate(text) {
-    const textSliced = text.slice(0, 10);
-    console.log(textSliced);
-    const regex = /^(\d{4})\-(\d{1,2})\-(\d{1,2})$/;
-    return textSliced.replace(regex, '$2/$3/$1');
-    console.log(textModified);
-    // this.dob.date = textModified;
+    const regex = /^\d{4}\-\d{1,2}\-\d{1,2}$/;
+    return text.replace(regex, '$2/$3/$1');
 }
 
-
-// Taken from the exercice Regular expressions in JavaScript, course: Reformatting a Telephone Number
-// function formatTelephone(text) {
-//     const regex = /^\D*(\d{3})\D*(\d{3})\D*(\d{4})\D*$/;
-//     return text.replace(regex, '($1) $2-$3');
-// }
-
-
-// function formatDate(text) {
-//     const textSliced = text.slice(0, 10);
-//     console.log(textSliced);
-//     const regex = /^(\d{4})\-(\d{1,2})\-(\d{1,2})$/;
-//     const textModified = textSliced.replace(regex, '$2/$3/$1');
-//     console.log(textModified);
-//     users.push;
-// }
-
 function generateCardsAddListener() {
-    const allCards = document.querySelectorAll(".card");
+    console.log('BYE BYE CARDS');
+    const cardsContainer = document.getElementById('gallery');
+    const allCards = document.querySelectorAll('div.card');
+    const allModals = document.querySelectorAll('div.modal-info-container');
+    const allCardNames = document.querySelectorAll('.card-name');
     const allModalNames = document.querySelectorAll('.modal-name');
-    const allModals = document.querySelectorAll('div.modal-container');
 
-    for (let i = 0; i < allCards.length; i++) {
-        allCards[i].addEventListener("click", (e) => {
-            for (let i = 0; i < allModals.length; i++) {
-                if (e.currentTarget.children[1].children[0].textContent == allModalNames[i].textContent) {
-                    allModals[i].style.display = "block";
-                    generateModalAddListener();
+    cardsContainer.addEventListener('click', (e) => {
+        console.log("called");
+        if (e.target.className === "card" || e.target.parentNode.parentNode.className === "card" || e.target.parentNode.className === "card") {
+            console.log("called2");
+            for (let i = 0; i < allModalNames.length; i++) {
+                if (e.target.textContent == allModalNames[i].textContent) {
+                    console.log(e.target.textContent);
+                    console.log(allModalNames[i].textContent);
+                    allModalNames[i].style.display = "block";
                 }
             }
-        });
-    }
+        }
+    });
 }
 
 function generateModalAddListener() {
-    const allClosedModalButtons = document.querySelectorAll(".modal-close-btn");
-    for (let i = 0; i < allClosedModalButtons.length; i++) {
-        allClosedModalButtons[i].addEventListener("click", (e) => {
-            e.currentTarget.parentNode.parentNode.style.display = "none";
-        });
-    }
+    console.log('BYE BYE MODAL');
+    const modalContainer = document.querySelector(".modal-container");
+    const closedButton = document.querySelector(".modal-close-btn");
+    closedButton.addEventListener('click', (e) => {
+        modalContainer.style.display = "none";
+    });
 }
 
 function generatedModal(data) {
