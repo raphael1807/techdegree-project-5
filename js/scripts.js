@@ -13,6 +13,7 @@ function fetchData(url) {
         .catch(error => console.log('Looks like there was a problem!', error))
 }
 
+// API called
 fetchData('https://randomuser.me/api/?results=12&inc=picture,dob,name,cell,email,location&nat=US')
     .then(data => {
         console.log(data);
@@ -39,6 +40,9 @@ function checkStatus(response) {
     }
 }
 
+// ------------------------------------------
+//  FORMATTER FUNCTIONS
+// ------------------------------------------
 
 // Taken from the exercice Regular expressions in JavaScript, course: Reformatting a Telephone Number
 function formatTelephone(text) {
@@ -53,6 +57,9 @@ function formatDate(text) {
     return textSliced.replace(regex, '$2/$3/$1');
 }
 
+// ------------------------------------------
+//  GENRATOR FUNCTIONS
+// ------------------------------------------
 
 // Generate cards from datas
 function generateCard(data) {
@@ -114,7 +121,7 @@ function generateCardsAddListener() {
     }
 }
 
-// Generate modals listener
+// Generate modals close box event listener
 function generateModalAddListener() {
     const allClosedModalButtons = document.querySelectorAll(".modal-close-btn");
     for (let i = 0; i < allClosedModalButtons.length; i++) {
@@ -128,31 +135,16 @@ function generateModalAddListener() {
 //  SEARCH MARKUP-EXCEEDS EXPECTATION
 // ------------------------------------------
 
-// Search markup: 
+const searchDiv = document.querySelector('div.search-container');
+searchDiv.insertAdjacentHTML('beforeEnd', `
+        <form action="#" method="get">
+            <input type="search" id="search-input" class="search-input" placeholder="Search...">
+                <input type="submit" value="&#x1F50D;" id="search-submit" class="search-submit">
+        </form>`);
 
-// You can use the commented out markup below as a template
-// for your search feature, but you must use JS to create and 
-// append it to `search-container` div.
-
-// IMPORTANT: Altering the arrangement of the markup and the 
-// attributes used may break the styles or functionality.
-
-// <form action="#" method="get">
-//     <input type="search" id="search-input" class="search-input" placeholder="Search...">
-//     <input type="submit" value="&#x1F50D;" id="search-submit" class="search-submit">
-// </form>
-
-
-// ------------------------------------------
-//  MODAL TOGGLE-EXCEEDS EXPECTATION
-// ------------------------------------------
-
-//     // IMPORTANT: Below is only for exceeds tasks 
-//     <div class="modal-btn-container">
-//         <button type="button" id="modal-prev" class="modal-prev btn">Prev</button>
-//         <button type="button" id="modal-next" class="modal-next btn">Next</button>
-//     </div>
-// </div>
+    // ------------------------------------------
+    //  MODAL TOGGLE-EXCEEDS EXPECTATION
+    // ------------------------------------------
 
 
 
