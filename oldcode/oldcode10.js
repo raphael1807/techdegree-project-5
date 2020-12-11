@@ -21,16 +21,16 @@ function fetchData(url) {
 // API called
 fetchData('https://randomuser.me/api/?results=12&inc=picture,dob,name,cell,email,location&nat=US')
     .then(data => {
+        console.log(data);
         for (let i = 0; i < data.results.length; i++) {
             data.results[i].cell = formatTelephone(data.results[i].cell);
             data.results[i].dob.date = formatDate(data.results[i].dob.date);
             users.push(data.results[i]);
+            console.log(users);
             generateCard(data.results[i]);
             generateModal(data.results[i]);
         }
         generateCardsAddListener();
-        // generatePreviousElementsListener();
-        // generateNextElementsListener();
     });
 
 // ------------------------------------------
@@ -105,8 +105,6 @@ function generateModal(data) {
         <button type="button" id="modal-next" class="modal-next btn">Next</button>
     </div>
 </div>`);
-    generatePreviousElementsListener();
-    generateNextElementsListener();
 }
 
 // ------------------------------------------
@@ -136,7 +134,7 @@ function generateModalAddListener() {
     const allClosedModalButtons = document.querySelectorAll(".modal-close-btn");
     for (let i = 0; i < allClosedModalButtons.length; i++) {
         allClosedModalButtons[i].addEventListener("click", (e) => {
-            e.currentTarget.parentNode.parentElement.style.display = "none";
+            e.currentTarget.parentNode.parentNode.style.display = "none";
         });
     }
 }
@@ -174,7 +172,7 @@ searchSubmit.addEventListener('click', (e) => {
 });
 
 // ------------------------------------------
-//  SEARCH FUNCTION
+//  SEARCH FUNCTION-EXCEEDS EXPECTATION
 // ------------------------------------------
 
 function searchUsers(searchInput, users) {
@@ -188,10 +186,12 @@ function searchUsers(searchInput, users) {
 
     // Loops every objects of the array students
     for (let i = 0; i < users.length; i++) {
-
+        console.log(users);
+        // console.log(searchInput.value);
         // If searchInput = Empty, calls the initial functions
         if (searchInput.value.length == 0) {
-            generateCard(users[i]);
+            for (let i = 0; i < users.length; i++)
+                generateCard(users[i]);
             generateModal(users[i]);
         }
 
@@ -212,44 +212,4 @@ function searchUsers(searchInput, users) {
     }
 }
 
-// ------------------------------------------
-//  PREVIOUS AND NEXT BUTTONS EVENT LISTENER
-// ------------------------------------------
 
-// Generate previous element listener
-function generatePreviousElementsListener() {
-    const allPreviousButtons = document.querySelectorAll('button.modal-prev');
-
-
-    for (let i = 0; i < allPreviousButtons.length; i++) {
-        allPreviousButtons[i].addEventListener("click", (e) => {
-            let eventTargetParentElement = e.currentTarget.parentNode.parentNode;
-            if (eventTargetParentElement.previousSibling.className == "modal-container") {
-                eventTargetParentElement.style.display = "none";
-                eventTargetParentElement.previousSibling.style.display = "block";
-            } else if (eventTargetParentElement.previousSibling.className !== "modal-container") {
-                eventTargetParentElement.style.display = "none";
-                eventTargetParentElement.parentElement.lastElementChild.style.display = "block";
-            }
-        });
-    }
-}
-
-// Generate next element listener
-function generateNextElementsListener() {
-    const allNextButtons = document.querySelectorAll('button.modal-next');
-
-    for (let i = 0; i < allNextButtons.length; i++) {
-        allNextButtons[i].addEventListener("click", (e) => {
-            let eventTargetParentElement = e.currentTarget.parentNode.parentNode;
-            if (eventTargetParentElement.nextSibling == null) {
-                eventTargetParentElement.style.display = "none";
-                eventTargetParentElement.parentElement.firstElementChild.style.display = "block";
-            }
-            else if (eventTargetParentElement.nextSibling.className == "modal-container") {
-                eventTargetParentElement.style.display = "none";
-                eventTargetParentElement.nextSibling.style.display = "block";
-            }
-        });
-    }
-}

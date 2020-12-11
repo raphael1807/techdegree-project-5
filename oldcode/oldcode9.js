@@ -21,16 +21,16 @@ function fetchData(url) {
 // API called
 fetchData('https://randomuser.me/api/?results=12&inc=picture,dob,name,cell,email,location&nat=US')
     .then(data => {
+        console.log(data);
         for (let i = 0; i < data.results.length; i++) {
             data.results[i].cell = formatTelephone(data.results[i].cell);
             data.results[i].dob.date = formatDate(data.results[i].dob.date);
             users.push(data.results[i]);
+            console.log(users);
             generateCard(data.results[i]);
-            generateModal(data.results[i]);
+            generatedModal(data.results[i]);
         }
         generateCardsAddListener();
-        // generatePreviousElementsListener();
-        // generateNextElementsListener();
     });
 
 // ------------------------------------------
@@ -82,9 +82,8 @@ function generateCard(data) {
         </div>
         </div>`);
 }
-
 // Generate modals function
-function generateModal(data) {
+function generatedModal(data) {
     const galleryOfCards = document.getElementById('modal');
     galleryOfCards.insertAdjacentHTML('beforeEnd', `<div class="modal-container" style="display:none">
     <div class="modal">
@@ -105,8 +104,6 @@ function generateModal(data) {
         <button type="button" id="modal-next" class="modal-next btn">Next</button>
     </div>
 </div>`);
-    generatePreviousElementsListener();
-    generateNextElementsListener();
 }
 
 // ------------------------------------------
@@ -136,7 +133,7 @@ function generateModalAddListener() {
     const allClosedModalButtons = document.querySelectorAll(".modal-close-btn");
     for (let i = 0; i < allClosedModalButtons.length; i++) {
         allClosedModalButtons[i].addEventListener("click", (e) => {
-            e.currentTarget.parentNode.parentElement.style.display = "none";
+            e.currentTarget.parentNode.parentNode.style.display = "none";
         });
     }
 }
@@ -161,95 +158,52 @@ const searchInput = document.querySelector('#search-input');
 const searchSubmit = document.querySelector('#search-submit');
 
 
-// Keyup searchInput listener
-searchInput.addEventListener('keyup', (event) => {
+/* submit listener */
+searchInput.addEventListener('click', (event) => {
+    // Invoke your search function here - Arguments: search, tableCells
     searchUsers(searchInput, users);
 });
 
 
-// Search submit click listener
-searchSubmit.addEventListener('click', (e) => {
-    e.preventDefault();
+/* submit listener */
+searchSubmit.addEventListener('keyup', () => {
+    event.preventDefault();
+    // Invoke your search function here - Arguments: search, tableCells
     searchUsers(searchInput, users);
 });
 
 // ------------------------------------------
-//  SEARCH FUNCTION
+//  SEARCH FUNCTION-EXCEEDS EXPECTATION
 // ------------------------------------------
-
 function searchUsers(searchInput, users) {
     const galleryDiv = document.querySelector('#gallery');
     galleryDiv.innerHTML = "";
-    const modalDiv = document.querySelector('#modal');
-    modalDiv.innerHTML = "";
 
     // Creates a new empty array of search results
     let usersSearchResults = [];
 
     // Loops every objects of the array students
-    for (let i = 0; i < users.length; i++) {
+    users.forEach(function (person) {
 
         // If searchInput = Empty, calls the initial functions
         if (searchInput.value.length == 0) {
-            generateCard(users[i]);
-            generateModal(users[i]);
+            for (let i = 0; i < users.length; i++)
+                generateCard(users[i]);
         }
 
         // If searchInput is not empty and objects of the array includes values of the searchInput:
-        else if (searchInput.value.length != 0 && ((users[i].name.first.toLowerCase().includes(searchInput.value.toLowerCase())) || (users[i].name.last.toLowerCase().includes(searchInput.value.toLowerCase())))) {
+        else if (searchInput.value.length != 0 && ((person.name.first.toLowerCase().includes(searchInput.value.toLowerCase())) || (person.name.last.toLowerCase().includes(searchInput.value.toLowerCase())))) {
             // objects are added to the array
-            usersSearchResults.push(users[i]);
+            usersSearchResults.push(person);
             // objects of the arrays who meet the search input are displayed
-            generateCard(users[i]);
-            generateModal(users[i]);
-            generateCardsAddListener();
+            generateCard(usersSearchResults);
         }
-    }
+    });
     // If the new array of objects is empty, it throws an error
-    if (searchInput.value.length != 0 && usersSearchResults.length === 0) {
+    if (searchInput.value.length != 0 && data2.length === 0) {
         galleryDiv.innerHTML = "";
         galleryDiv.insertAdjacentHTML("beforeend", '<p>No results found</p>');
     }
 }
 
-// ------------------------------------------
-//  PREVIOUS AND NEXT BUTTONS EVENT LISTENER
-// ------------------------------------------
 
-// Generate previous element listener
-function generatePreviousElementsListener() {
-    const allPreviousButtons = document.querySelectorAll('button.modal-prev');
-
-
-    for (let i = 0; i < allPreviousButtons.length; i++) {
-        allPreviousButtons[i].addEventListener("click", (e) => {
-            let eventTargetParentElement = e.currentTarget.parentNode.parentNode;
-            if (eventTargetParentElement.previousSibling.className == "modal-container") {
-                eventTargetParentElement.style.display = "none";
-                eventTargetParentElement.previousSibling.style.display = "block";
-            } else if (eventTargetParentElement.previousSibling.className !== "modal-container") {
-                eventTargetParentElement.style.display = "none";
-                eventTargetParentElement.parentElement.lastElementChild.style.display = "block";
-            }
-        });
-    }
-}
-
-// Generate next element listener
-function generateNextElementsListener() {
-    const allNextButtons = document.querySelectorAll('button.modal-next');
-
-    for (let i = 0; i < allNextButtons.length; i++) {
-        allNextButtons[i].addEventListener("click", (e) => {
-            let eventTargetParentElement = e.currentTarget.parentNode.parentNode;
-            if (eventTargetParentElement.nextSibling == null) {
-                eventTargetParentElement.style.display = "none";
-                eventTargetParentElement.parentElement.firstElementChild.style.display = "block";
-            }
-            else if (eventTargetParentElement.nextSibling.className == "modal-container") {
-                eventTargetParentElement.style.display = "none";
-                eventTargetParentElement.nextSibling.style.display = "block";
-            }
-        });
-    }
-}

@@ -21,6 +21,7 @@ function fetchData(url) {
 // API called
 fetchData('https://randomuser.me/api/?results=12&inc=picture,dob,name,cell,email,location&nat=US')
     .then(data => {
+        console.log(data);
         for (let i = 0; i < data.results.length; i++) {
             data.results[i].cell = formatTelephone(data.results[i].cell);
             data.results[i].dob.date = formatDate(data.results[i].dob.date);
@@ -29,8 +30,6 @@ fetchData('https://randomuser.me/api/?results=12&inc=picture,dob,name,cell,email
             generateModal(data.results[i]);
         }
         generateCardsAddListener();
-        // generatePreviousElementsListener();
-        // generateNextElementsListener();
     });
 
 // ------------------------------------------
@@ -86,7 +85,7 @@ function generateCard(data) {
 // Generate modals function
 function generateModal(data) {
     const galleryOfCards = document.getElementById('modal');
-    galleryOfCards.insertAdjacentHTML('beforeEnd', `<div class="modal-container" style="display:none">
+    galleryOfCards.insertAdjacentHTML('beforeEnd', `<div id="${[data.picture.large]}" class="modal-container" style="display:none">
     <div class="modal">
         <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
         <div class="modal-info-container">
@@ -105,8 +104,6 @@ function generateModal(data) {
         <button type="button" id="modal-next" class="modal-next btn">Next</button>
     </div>
 </div>`);
-    generatePreviousElementsListener();
-    generateNextElementsListener();
 }
 
 // ------------------------------------------
@@ -136,7 +133,7 @@ function generateModalAddListener() {
     const allClosedModalButtons = document.querySelectorAll(".modal-close-btn");
     for (let i = 0; i < allClosedModalButtons.length; i++) {
         allClosedModalButtons[i].addEventListener("click", (e) => {
-            e.currentTarget.parentNode.parentElement.style.display = "none";
+            e.currentTarget.parentNode.parentNode.style.display = "none";
         });
     }
 }
@@ -174,7 +171,7 @@ searchSubmit.addEventListener('click', (e) => {
 });
 
 // ------------------------------------------
-//  SEARCH FUNCTION
+//  SEARCH FUNCTION-EXCEEDS EXPECTATION
 // ------------------------------------------
 
 function searchUsers(searchInput, users) {
@@ -213,43 +210,56 @@ function searchUsers(searchInput, users) {
 }
 
 // ------------------------------------------
-//  PREVIOUS AND NEXT BUTTONS EVENT LISTENER
+//  Previous/Next Event listener
 // ------------------------------------------
 
-// Generate previous element listener
-function generatePreviousElementsListener() {
-    const allPreviousButtons = document.querySelectorAll('button.modal-prev');
+function generatePrevNextEventListener() {
+    const allPreviousModal = document.querySelectorAll('button.modal-prev');
+    const allNextModal = document.querySelectorAll('button.modal-next');
 
+    allPreviousModal.addEventListener('click', (e) => {
+        alert("Previous!");
+    });
+    allNextModal.addEventListener('click', (e) => {
+        alert("Next!");
+    }); s
+    // // Generate modals close box event listener
+    // function generateModalAddListener() {
+    //     const allModals = document.querySelectorAll('div.modal-container');
+    //     for (let i = 0; i < allClosedModalButtons.length; i++) {
+    //         allClosedModalButtons[i].addEventListener("click", (e) => {
+    //             e.currentTarget.parentNode.parentNode.style.display = "none";
+    //         });
+    //     }
+    // }
 
-    for (let i = 0; i < allPreviousButtons.length; i++) {
-        allPreviousButtons[i].addEventListener("click", (e) => {
-            let eventTargetParentElement = e.currentTarget.parentNode.parentNode;
-            if (eventTargetParentElement.previousSibling.className == "modal-container") {
-                eventTargetParentElement.style.display = "none";
-                eventTargetParentElement.previousSibling.style.display = "block";
-            } else if (eventTargetParentElement.previousSibling.className !== "modal-container") {
-                eventTargetParentElement.style.display = "none";
-                eventTargetParentElement.parentElement.lastElementChild.style.display = "block";
-            }
-        });
-    }
+    // // Generate modals close box event listener
+    // function generateModalAddListener() {
+    //     const allModals = document.querySelectorAll('div.modal-container');
+    //     for (let i = 0; i < allClosedModalButtons.length; i++) {
+    //         allClosedModalButtons[i].addEventListener("click", (e) => {
+    //             e.currentTarget.parentNode.parentNode.style.display = "none";
+    //         });
+    //     }
+    // }
 }
 
-// Generate next element listener
-function generateNextElementsListener() {
-    const allNextButtons = document.querySelectorAll('button.modal-next');
+// // Generate cards event listener
+// function generateCardsAddListener() {
+//     const allPreviousButtons = document.querySelectorAll('button.modal-prev');
+//     const allPreviousModal = document.querySelectorAll(".card");
+//     const allModalNames = document.querySelectorAll('.modal-name');
+//     const allModals = document.querySelectorAll('div.modal-container');
 
-    for (let i = 0; i < allNextButtons.length; i++) {
-        allNextButtons[i].addEventListener("click", (e) => {
-            let eventTargetParentElement = e.currentTarget.parentNode.parentNode;
-            if (eventTargetParentElement.nextSibling == null) {
-                eventTargetParentElement.style.display = "none";
-                eventTargetParentElement.parentElement.firstElementChild.style.display = "block";
-            }
-            else if (eventTargetParentElement.nextSibling.className == "modal-container") {
-                eventTargetParentElement.style.display = "none";
-                eventTargetParentElement.nextSibling.style.display = "block";
-            }
-        });
-    }
-}
+//     for (let i = 0; i < allPreviousButtons.length; i++) {
+//         allPreviousButtons[i].addEventListener("click", (e) => {
+//             for (let i = 0; i < allModals.length; i++) {
+//                 if (e.currentTarget.children[1].children[0].textContent == allModalNames[i].textContent) {
+//                     e.currentTarget.parentElement.style.display = "none";
+//                     e.currentTarget.parentElement.style.display = "block";
+//                     generateModalAddListener();
+//                 }
+//             }
+//         });
+//     }
+// }

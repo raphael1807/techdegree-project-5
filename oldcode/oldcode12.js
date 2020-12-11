@@ -136,7 +136,7 @@ function generateModalAddListener() {
     const allClosedModalButtons = document.querySelectorAll(".modal-close-btn");
     for (let i = 0; i < allClosedModalButtons.length; i++) {
         allClosedModalButtons[i].addEventListener("click", (e) => {
-            e.currentTarget.parentNode.parentElement.style.display = "none";
+            parentElement.style.display = "none";
         });
     }
 }
@@ -213,7 +213,7 @@ function searchUsers(searchInput, users) {
 }
 
 // ------------------------------------------
-//  PREVIOUS AND NEXT BUTTONS EVENT LISTENER
+//  Previous/Next Event listener
 // ------------------------------------------
 
 // Generate previous element listener
@@ -223,13 +223,13 @@ function generatePreviousElementsListener() {
 
     for (let i = 0; i < allPreviousButtons.length; i++) {
         allPreviousButtons[i].addEventListener("click", (e) => {
-            let eventTargetParentElement = e.currentTarget.parentNode.parentNode;
-            if (eventTargetParentElement.previousSibling.className == "modal-container") {
-                eventTargetParentElement.style.display = "none";
-                eventTargetParentElement.previousSibling.style.display = "block";
-            } else if (eventTargetParentElement.previousSibling.className !== "modal-container") {
-                eventTargetParentElement.style.display = "none";
-                eventTargetParentElement.parentElement.lastElementChild.style.display = "block";
+            let parentElement = e.currentTarget.parentNode.parentNode;
+            if (parentElement.previousSibling.className == "modal-container") {
+                parentElement.style.display = "none";
+                parentElement.previousSibling.style.display = "block";
+            } else if (parentElement.previousSibling.className !== "modal-container") {
+                parentElement.style.display = "none";
+                parentElement.parentElement.lastElementChild.style.display = "block";
             }
         });
     }
@@ -241,14 +241,13 @@ function generateNextElementsListener() {
 
     for (let i = 0; i < allNextButtons.length; i++) {
         allNextButtons[i].addEventListener("click", (e) => {
-            let eventTargetParentElement = e.currentTarget.parentNode.parentNode;
-            if (eventTargetParentElement.nextSibling == null) {
-                eventTargetParentElement.style.display = "none";
-                eventTargetParentElement.parentElement.firstElementChild.style.display = "block";
+            if (parentElement.nextSibling == null) {
+                parentElement.style.display = "none";
+                parentElement.parentElement.firstElementChild.style.display = "block";
             }
-            else if (eventTargetParentElement.nextSibling.className == "modal-container") {
-                eventTargetParentElement.style.display = "none";
-                eventTargetParentElement.nextSibling.style.display = "block";
+            else if (parentElement.nextSibling.className == "modal-container") {
+                parentElement.style.display = "none";
+                parentElement.nextSibling.style.display = "block";
             }
         });
     }
