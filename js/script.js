@@ -29,8 +29,6 @@ fetchData('https://randomuser.me/api/?results=12&inc=picture,dob,name,cell,email
             generateModal(data.results[i]);
         }
         generateCardsAddListener();
-        // generatePreviousElementsListener();
-        // generateNextElementsListener();
     });
 
 // ------------------------------------------
