@@ -219,16 +219,16 @@ function searchUsers(searchInput, users) {
 function generatePreviousElementsListener() {
     const allPreviousButtons = document.querySelectorAll('button.modal-prev');
 
+
     for (let i = 0; i < allPreviousButtons.length; i++) {
         allPreviousButtons[i].addEventListener("click", (e) => {
             let eventTargetParentElement = e.currentTarget.parentNode.parentNode;
-            if (eventTargetParentElement.previousSibling == null || eventTargetParentElement.previousSibling.className !== "modal-container") {
-                eventTargetParentElement.style.display = "none";
-                eventTargetParentElement.parentElement.lastElementChild.style.display = "block";
-            }
-            else {
+            if (eventTargetParentElement.previousSibling.className == "modal-container") {
                 eventTargetParentElement.style.display = "none";
                 eventTargetParentElement.previousSibling.style.display = "block";
+            } else if (eventTargetParentElement.previousSibling.className !== "modal-container") {
+                eventTargetParentElement.style.display = "none";
+                eventTargetParentElement.parentElement.lastElementChild.style.display = "block";
             }
         });
     }
